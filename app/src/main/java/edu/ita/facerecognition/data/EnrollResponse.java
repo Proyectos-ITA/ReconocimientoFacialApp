@@ -5,23 +5,23 @@ import edu.ita.facerecognition.util.Enums;
 
 @SuppressWarnings({"WeakerAccess", "CanBeFinal"})
 public class EnrollResponse {
-    public int code;
-    public String message;
+    public int codigo;
+    public String mensaje;
 
     public EnrollResponse() {
-        this.code = Enums.FR_UNEXPECTED_ERROR;
-        this.message = null;
+        this.codigo = Enums.FR_UNEXPECTED_ERROR;
+        this.mensaje = null;
     }
 
-    public EnrollResponse(int code, String message) {
-        this.code = code;
-        this.message = message;
+    public EnrollResponse(int codigo, String mensaje) {
+        this.codigo = codigo;
+        this.mensaje = mensaje;
     }
 
     public static EnrollResponse fromJSON(JSONObject json) throws Exception {
         EnrollResponse response = new EnrollResponse();
-        response.code = json.getInt("Code");
-        response.message = json.getString("Message");
+        response.codigo = json.getInt("Codigo");
+        response.mensaje = json.getString("Mensaje");
         return response;
     }
 }

@@ -7,47 +7,47 @@ import edu.ita.facerecognition.util.Utils;
 
 @SuppressWarnings("WeakerAccess")
 public class RecognizeResponse {
-    public int code;
-    public String message;
-    public float score;
-    public String control;
-    public String firstName;
-    public String lastName;
-    public String secondLastName;
-    public Bitmap thumbnail;
+    public int codigo;
+    public String mensaje;
+    public float marcador;
+    public String numeroDeControl;
+    public String nombre;
+    public String apellidoPaterno;
+    public String apellidoMaterno;
+    public Bitmap miniatura;
 
     public RecognizeResponse() {
-        this.code = Enums.FR_UNEXPECTED_ERROR;
-        this.message = null;
-        this.score = 0.f;
-        this.control = null;
-        this.firstName = null;
-        this.lastName = null;
-        this.secondLastName = null;
-        this.thumbnail = null;
+        this.codigo = Enums.FR_UNEXPECTED_ERROR;
+        this.mensaje = null;
+        this.marcador = 0.f;
+        this.numeroDeControl = null;
+        this.nombre = null;
+        this.apellidoPaterno = null;
+        this.apellidoMaterno = null;
+        this.miniatura = null;
     }
 
     public RecognizeResponse(int code, String message) {
-        this.code = code;
-        this.message = message;
-        this.score = 0.f;
-        this.control = null;
-        this.firstName = null;
-        this.lastName = null;
-        this.secondLastName = null;
-        this.thumbnail = null;
+        this.codigo = code;
+        this.mensaje = message;
+        this.marcador = 0.f;
+        this.numeroDeControl = null;
+        this.nombre = null;
+        this.apellidoPaterno = null;
+        this.apellidoMaterno = null;
+        this.miniatura = null;
     }
 
     public static RecognizeResponse fromJSON(JSONObject json) throws Exception {
         RecognizeResponse response = new RecognizeResponse();
-        response.code = json.getInt("Code");
-        response.message = json.getString("Message");
-        response.score = Float.valueOf(json.getString("Score"));
-        response.control = json.getString("Control");
-        response.firstName = json.getString("FirstName");
-        response.lastName = json.getString("LastName");
-        response.secondLastName = json.getString("SecondLastName");
-        response.thumbnail = Utils.decodeBitmap(json.getString("Thumbnail"));
+        response.codigo = json.getInt("Codigo");
+        response.mensaje = json.getString("Mensaje");
+        response.marcador = Float.parseFloat(json.getString("Marcador"));
+        response.numeroDeControl = json.getString("Numero de Control");
+        response.nombre = json.getString("Nombre(s)");
+        response.apellidoPaterno = json.getString("Apellido Paterno");
+        response.apellidoMaterno = json.getString("Apellido Materno");
+        response.miniatura = Utils.decodeBitmap(json.getString("Miniatura"));
         return response;
     }
 }

@@ -2,11 +2,11 @@ package edu.ita.facerecognition.domain;
 
 @SuppressWarnings("WeakerAccess")
 public class ServerAddress {
-    public String ip;
-    public String port;
+    public String direccionIP;
+    public String puerto;
 
-    public ServerAddress(String ip, String port) {
-        this.ip = ip;
-        this.port = port;
+    public ServerAddress(String direccionIP, String puerto) {
+        this.direccionIP = direccionIP;
+        this.puerto = puerto;
     }
 }

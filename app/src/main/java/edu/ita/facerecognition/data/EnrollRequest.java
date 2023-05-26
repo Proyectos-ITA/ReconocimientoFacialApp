@@ -7,27 +7,27 @@ import edu.ita.facerecognition.util.Utils;
 
 @SuppressWarnings("WeakerAccess")
 public class EnrollRequest {
-    public String control;
-    public String firstName;
-    public String lastName;
-    public String secondLastName;
-    public Bitmap image;
+    public String numeroDeControl;
+    public String nombre;
+    public String apellidoPaterno;
+    public String apellidoMaterno;
+    public Bitmap imagen;
 
     public EnrollRequest() {
-        this.control = null;
-        this.firstName = null;
-        this.lastName = null;
-        this.secondLastName = null;
-        this.image = null;
+        this.numeroDeControl = null;
+        this.nombre = null;
+        this.apellidoPaterno = null;
+        this.apellidoMaterno = null;
+        this.imagen = null;
     }
 
     public JSONObject toJSON() throws Exception {
         JSONObject jsonObject = new JSONObject();
-        jsonObject.put("Control", control);
-        jsonObject.put("FirstName", firstName);
-        jsonObject.put("LastName", lastName);
-        jsonObject.put("SecondLastName", secondLastName);
-        jsonObject.put("Image", Utils.encodeBitmap(image));
+        jsonObject.put("Control", numeroDeControl);
+        jsonObject.put("Nombre(s)", nombre);
+        jsonObject.put("Apellido Paterno", apellidoPaterno);
+        jsonObject.put("Apellido Materno", apellidoMaterno);
+        jsonObject.put("Imagen", Utils.encodeBitmap(imagen));
         return jsonObject;
     }
 }
