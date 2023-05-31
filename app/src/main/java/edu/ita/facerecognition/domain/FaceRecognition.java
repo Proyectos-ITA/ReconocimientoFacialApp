@@ -94,6 +94,6 @@ public class FaceRecognition {
 
     private static String getUrl(Context context, String method) {
         ServerAddress address = Utils.getServerAddress(context);
-        return "http://" + address.ip + ":" + address.port + Enums.FR_SERVER_URL_SUFFIX_KEY + method;
+        return "http://" + address.direccionIP + ":" + address.puerto + Enums.FR_SERVER_URL_SUFFIX_KEY + method;
     }
 }
