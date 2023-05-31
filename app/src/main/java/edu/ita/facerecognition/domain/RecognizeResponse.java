@@ -1,6 +1,9 @@
 package edu.ita.facerecognition.domain;
 
 import android.graphics.Bitmap;
+
+import androidx.annotation.NonNull;
+
 import org.json.JSONObject;
 import edu.ita.facerecognition.util.Enums;
 import edu.ita.facerecognition.util.Utils;
@@ -27,9 +30,9 @@ public class RecognizeResponse {
         this.miniatura = null;
     }
 
-    public RecognizeResponse(int code, String message) {
-        this.codigo = code;
-        this.mensaje = message;
+    public RecognizeResponse(int codigo, String mensaje) {
+        this.codigo = codigo;
+        this.mensaje = mensaje;
         this.marcador = 0.f;
         this.numeroDeControl = null;
         this.nombre = null;
@@ -38,16 +41,17 @@ public class RecognizeResponse {
         this.miniatura = null;
     }
 
-    public static RecognizeResponse fromJSON(JSONObject json) throws Exception {
-        RecognizeResponse response = new RecognizeResponse();
-        response.codigo = json.getInt("Codigo");
-        response.mensaje = json.getString("Mensaje");
-        response.marcador = Float.parseFloat(json.getString("Marcador"));
-        response.numeroDeControl = json.getString("Numero de Control");
-        response.nombre = json.getString("Nombre(s)");
-        response.apellidoPaterno = json.getString("Apellido Paterno");
-        response.apellidoMaterno = json.getString("Apellido Materno");
-        response.miniatura = Utils.decodeBitmap(json.getString("Miniatura"));
-        return response;
+    @NonNull
+    public static RecognizeResponse fromJSON(@NonNull JSONObject json) throws Exception {
+        RecognizeResponse respuesta = new RecognizeResponse();
+        respuesta.codigo = json.getInt("Codigo");
+        respuesta.mensaje = json.getString("Mensaje");
+        respuesta.marcador = Float.parseFloat(json.getString("Marcador"));
+        respuesta.numeroDeControl = json.getString("Numero de Control");
+        respuesta.nombre = json.getString("Nombre(s)");
+        respuesta.apellidoPaterno = json.getString("Apellido Paterno");
+        respuesta.apellidoMaterno = json.getString("Apellido Materno");
+        respuesta.miniatura = Utils.decodeBitmap(json.getString("Miniatura"));
+        return respuesta;
     }
 }
