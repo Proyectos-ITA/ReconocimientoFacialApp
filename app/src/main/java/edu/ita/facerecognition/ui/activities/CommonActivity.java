@@ -32,4 +32,8 @@ public abstract class CommonActivity extends AppCompatActivity {
             mProgressDialog.dismiss();
         }
     }
+
+    public abstract void onRecognizeFragmentClose();
+
+    public abstract void onSettingsFragmentClose();
 }

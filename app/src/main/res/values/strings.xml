@@ -33,4 +33,6 @@
     <string name="settings_fragment_hint_port">Número de puerto del servidor:</string>
     <string name="settings_fragment_error_ip">Introduzca una dirección IP válida!!!</string>
     <string name="settings_fragment_error_port">Introduzca un número de puerto válido!!!</string>
+    <string name="enroll">Enroll</string>
+    <string name="Recognize">Recognize</string>
 </resources>
