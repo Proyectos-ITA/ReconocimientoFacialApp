@@ -1,66 +1,100 @@
 package edu.ita.facerecognition.ui.fragments;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import java.lang.ref.WeakReference;
 
 import edu.ita.facerecognition.R;
+import edu.ita.facerecognition.domain.RecognizeResponse;
+import edu.ita.facerecognition.util.Utils;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link RecognizeFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class RecognizeFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public RecognizeFragment() {
-        // Required empty public constructor
+public class RecognizeFragment extends CommonFragment {
+    public interface OnRecognizeFragmentListener {
+        void onRecognizeFragmentClose();
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment RecognizeFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static RecognizeFragment newInstance(String param1, String param2) {
-        RecognizeFragment fragment = new RecognizeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    private static WeakReference<RecognizeResponse> mResponse;
+
+    private OnRecognizeFragmentListener mListener;
+
+    @SuppressWarnings("WeakerAccess")
+    public RecognizeFragment() { }
+
+    public static RecognizeFragment newInstance() {
+        return new RecognizeFragment();
+    }
+
+    public static void setResponse(RecognizeResponse response) {
+        mResponse = response != null ? new WeakReference<>(response) : null;
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_recognize, container, false);
+    }
+
+    @SuppressLint("SetTextI18n")
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        view.findViewById(R.id.recognizeOkButton).setOnClickListener(v -> onCloseFragment());
+
+        RecognizeResponse response = mResponse == null ? null : mResponse.get();
+        if (response != null) {
+            ((TextView) view.findViewById(R.id.recognizeNombreTextView)).setText(getString(R.string.recognize_fragment_prefix_nomre) + response.nombre);
+            ((TextView) view.findViewById(R.id.recognizePaternoTextView)).setText(getString(R.string.recognize_fragment_prefix_paterno) + response.apellidoPaterno);
+            ((TextView) view.findViewById(R.id.recognizeMaternoTextView)).setText(getString(R.string.recognize_fragment_prefix_materno) + response.apellidoMaterno);
+            ((TextView) view.findViewById(R.id.recognizeControlTextView)).setText(getString(R.string.recognize_fragment_prefix_control) + response.numeroDeControl);
+            ((TextView) view.findViewById(R.id.recognizeScoreTextView)).setText(getString(R.string.recognize_fragment_prefix_score) + response.marcador);
+
+            if (response.miniatura != null) {
+                ((ImageView) view.findViewById(R.id.recognizeFotoImageView)).setImageBitmap(response.miniatura);
+            }
+            else {
+                Utils.showAlert(getActivity(), getString(R.string.common_title_attention), getString(R.string.common_message_error_bitmap_decode));
+            }
+        }
+        else {
+            Utils.showAlert(getActivity(), getString(R.string.common_title_error), getString(R.string.recognize_fragment_message_error_response), (dialog, which) -> {
+                dialog.dismiss();
+                onCloseFragment();
+            });
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_recognize, container, false);
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        if (context instanceof OnRecognizeFragmentListener) {
+            mListener = (OnRecognizeFragmentListener) context;
+        } else {
+            throw new RuntimeException(context + " must implement OnRecognizeFragmentListener");
+        }
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mListener = null;
+    }
+
+    @Override
+    public void onBackPressed() {
+        onCloseFragment();
+    }
+
+    private void onCloseFragment() {
+        mListener.onRecognizeFragmentClose();
     }
 }
