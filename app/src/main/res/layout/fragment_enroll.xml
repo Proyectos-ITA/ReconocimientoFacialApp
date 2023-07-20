@@ -1,175 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:keepScreenOn="true"
     android:background="@android:color/white"
-    tools:context=".ui.fragments.EnrollFragment"
-    tools:ignore="Overdraw">
+    android:keepScreenOn="true">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-
+    <!-- Top ConstraintLayout for Photo -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/enrollFotoConstraintLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_weight="1"
         app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        app:layout_constraintHeight_percent="0.4">
 
-    <ImageView
-        android:id="@+id/enrollFotoImageView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        android:adjustViewBounds="true"
-        android:background="@drawable/border_image"
-        android:padding="1dp"
-        android:scaleType="fitCenter"
-        android:src="@android:drawable/ic_menu_camera"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="w,2:3"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="ContentDescription" />
+        <ImageView
+            android:id="@+id/enrollFotoImageView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
+            android:adjustViewBounds="true"
+            android:background="@drawable/border_image"
+            android:padding="1dp"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_menu_camera"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintDimensionRatio="w,2:3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHeight_default="percent"
-        app:layout_constraintHeight_percent="0.6"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enrollFotoConstraintLayout"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
+    <!-- ConstraintLayout for Name -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/enrollNombreTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_margin="8dp"
         android:background="@drawable/button_flat"
-        android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/enrollPaternoTextInputLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        android:padding="5dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:hint="@string/enroll_fragment_hint_nombre"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enroll_fragment_hint_nombre"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- ConstraintLayout for Paterno -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/enrollPaternoTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_margin="8dp"
         android:background="@drawable/button_flat"
-        android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/enrollMaternoTextInputLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enrollNombreTextInputLayout"/>
+        android:padding="5dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enroll_fragment_hint_paterno"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:maxWidth="488dp" />
 
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:hint="@string/enroll_fragment_hint_paterno"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- ConstraintLayout for Materno -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/enrollMaternoTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_margin="8dp"
         android:background="@drawable/button_flat"
-        android:padding="5dp"
-        app:layout_constraintBottom_toTopOf="@+id/enrollControlTextInputLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enrollPaternoTextInputLayout"/>
+        android:padding="5dp">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:hint="@string/enroll_fragment_hint_materno"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enroll_fragment_hint_materno"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:maxWidth="488dp" />
 
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- ConstraintLayout for numero de Control -->
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/enrollControlTextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_margin="8dp"
         android:background="@drawable/button_flat"
-        android:padding="5dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/enrollMaternoTextInputLayout"/>
+        android:padding="5dp">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/enroll_fragment_hint_control"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_vertical"
-        android:hint="@string/enroll_fragment_hint_control"
-        android:textSize="18sp"
-        android:textStyle="bold"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
+    <!-- Toolbar -->
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
         android:background="@color/colorPrimaryDark"
-        android:padding="5dp"/>
+        android:padding="5dp" />
 
-<!--    <Button-->
-<!--        android:id="@+id/enrollCancelButton"-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="30dp"-->
-<!--        android:layout_gravity="start"-->
-<!--        android:layout_marginStart="10dp"-->
-<!--        android:background="@android:color/transparent"-->
-<!--        android:text="@string/common_btn_cancel"-->
-<!--        android:textColor="@android:color/white" />-->
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:padding="10dp">
 
-<!--    <Button-->
-<!--        android:id="@+id/enrollOkButton"-->
-<!--        android:layout_width="100dp"-->
-<!--        android:layout_height="30dp"-->
-<!--        android:layout_gravity="end"-->
-<!--        android:layout_marginEnd="20dp"-->
-<!--        android:background="@android:color/transparent"-->
-<!--        android:text="@string/common_btn_ok"-->
-<!--        android:textColor="@android:color/white" />-->
+        <Button
+            android:id="@+id/enrollCancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_marginEnd="10dp"
+            android:background="@android:color/transparent"
+            android:text="@string/common_btn_cancel"
+            android:textColor="@android:color/white"
+            style="?android:attr/buttonBarButtonStyle" />
+
+        <Button
+            android:id="@+id/enrollOkButton"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:text="@string/common_btn_ok"
+            android:textColor="@android:color/white"
+            style="?android:attr/buttonBarButtonStyle" />
+
+    </LinearLayout>
+
 </LinearLayout>
