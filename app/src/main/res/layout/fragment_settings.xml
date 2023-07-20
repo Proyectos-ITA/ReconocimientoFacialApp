@@ -1,14 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:keepScreenOn="true"
     android:background="@android:color/white"
+    android:keepScreenOn="true"
+    android:orientation="vertical"
     tools:context=".ui.fragments.SettingsFragment"
     tools:ignore="Overdraw">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-</FrameLayout>
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/settingsIPTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/button_flat"
+            android:padding="5dp"
+            app:layout_constraintBottom_toTopOf="@+id/settingsPortTextInputLayout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:hint="@string/settings_fragment_hint_ip"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/settingsPortTextInputLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:background="@drawable/button_flat"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/settingsIPTextInputLayout">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/settings_fragment_hint_port"
+                android:inputType="number"
+                android:maxWidth="488dp" />
+
+
+        </com.google.android.material.textfield.TextInputLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.appbar.MaterialToolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:padding="5dp">
+
+        <Button
+            android:id="@+id/settingsCancelButton"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="start"
+            android:layout_marginStart="10dp"
+            android:background="@android:color/transparent"
+            android:text="@string/common_btn_cancel"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/settingsOkButton"
+            android:layout_width="100dp"
+            android:layout_height="48dp"
+            android:layout_gravity="end"
+            android:layout_marginEnd="20dp"
+            android:background="@android:color/transparent"
+            android:text="@string/common_btn_ok"
+            android:textColor="@android:color/white" />
+    </com.google.android.material.appbar.MaterialToolbar>
+
+</LinearLayout>
