@@ -76,7 +76,7 @@ public class MainActivity extends CommonActivity implements MainFragment.OnMainF
             return true;
         }
 
-        for (Fragment f : fragments){
+        for (Fragment f : fragments) {
             if (f instanceof CommonFragment) {
                 ((CommonFragment) f).onBackPressed();
             }
@@ -134,8 +134,7 @@ public class MainActivity extends CommonActivity implements MainFragment.OnMainF
     private void onRecognizeResponse(RecognizeResponse response) {
         if (response.codigo == Enums.FR_OK) {
             showRecognizeFragment(response);
-        }
-        else {
+        } else {
             String message = response.mensaje;
             if (response.codigo == Enums.FR_USER_NOT_FOUND) {
                 message += ("\nScore: " + response.marcador);
