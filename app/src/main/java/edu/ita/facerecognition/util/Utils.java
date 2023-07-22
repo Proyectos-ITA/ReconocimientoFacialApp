@@ -8,11 +8,16 @@ import android.graphics.BitmapFactory;
 import android.util.Base64;
 import android.util.Log;
 import android.util.Patterns;
+
 import java.io.ByteArrayOutputStream;
 import java.util.regex.Matcher;
+
 import static android.content.Context.MODE_PRIVATE;
+
 import androidx.appcompat.app.AlertDialog;
+
 import com.google.android.material.textfield.TextInputLayout;
+
 import edu.ita.facerecognition.R;
 import edu.ita.facerecognition.domain.ServerAddress;
 
@@ -42,14 +47,12 @@ public class Utils {
     }
 
     public static ServerAddress getServerAddress(Context context) {
-        try
-        {
+        try {
             SharedPreferences prefs = context.getSharedPreferences(Enums.FR_PREFERENCES_KEY, MODE_PRIVATE);
             String ip = prefs.getString(Enums.FR_SERVER_IP_KEY, Enums.FR_SERVER_IP_VALUE);
             String port = prefs.getString(Enums.FR_SERVER_PORT_KEY, Enums.FR_SERVER_PORT_VALUE);
             return new ServerAddress(ip, port);
-        }
-        catch (ClassCastException ex) {
+        } catch (ClassCastException ex) {
             Log.e(TAG, Log.getStackTraceString(ex));
             return new ServerAddress(Enums.FR_SERVER_IP_VALUE, Enums.FR_SERVER_PORT_VALUE);
         }
@@ -98,13 +101,8 @@ public class Utils {
 
         if (listener == null) {
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, context.getString(R.string.common_btn_ok),
-                    new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int which) {
-                            dialog.dismiss();
-                        }
-                    });
-        }
-        else {
+                    (dialog, which) -> dialog.dismiss());
+        } else {
             alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, context.getString(R.string.common_btn_ok), listener);
         }
 
